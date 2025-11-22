@@ -59,16 +59,15 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: isOpen ? 1 : 0 }}
         transition={{ duration: 0.3 }}
-        className={`lg:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-40 ${
-          isOpen ? 'pointer-events-auto' : 'pointer-events-none'
-        }`}
+        className={`lg:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-40 ${isOpen ? 'pointer-events-auto' : 'pointer-events-none'
+          }`}
         onClick={() => setIsOpen(false)}
       />
 
       {/* Sidebar */}
       <motion.aside
         initial={false} // Don't animate on initial load
-        animate={{ 
+        animate={{
           x: window.innerWidth >= 1024 ? 0 : (isOpen ? 0 : -320) // Always show on desktop
         }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
@@ -128,8 +127,8 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
               {/* Glow effect */}
               <div className="absolute -inset-2 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-full blur-lg opacity-60"></div>
             </motion.div>
-            
-            <motion.h2 
+
+            <motion.h2
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
@@ -137,15 +136,15 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
             >
               Haseeb Pirhar
             </motion.h2>
-            <motion.p 
+            <motion.p
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
               className="text-gray-400 text-sm font-medium"
             >
-              Full Stack Developer
+              Backend Developer
             </motion.p>
-            <motion.div 
+            <motion.div
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
               transition={{ delay: 0.6, duration: 0.5 }}
@@ -157,7 +156,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
           <nav className="flex-1 mb-8">
             <ul className="space-y-3">
               {navItems.map((item, index) => (
-                <motion.li 
+                <motion.li
                   key={item.name}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
