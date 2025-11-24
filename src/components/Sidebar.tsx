@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { HiMenu, HiX, HiDownload } from 'react-icons/hi';
 import { FaGithub, FaLinkedin, FaTwitter, FaInstagram } from 'react-icons/fa';
 import { smoothScroll } from '../utils/smoothScroll';
+import { NAVIGATION_ITEMS } from '../utils/constants';
 
 interface SidebarProps {
   isOpen: boolean;
@@ -10,19 +11,11 @@ interface SidebarProps {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
-  const navItems = [
-    { name: 'Home', href: 'home' },
-    { name: 'About', href: 'about' },
-    { name: 'Services', href: 'services' },
-    { name: 'Projects', href: 'projects' },
-    { name: 'Contact', href: 'contact' },
-  ];
-
   const socialLinks = [
-    { icon: <FaGithub />, href: 'https://github.com' },
-    { icon: <FaLinkedin />, href: 'https://linkedin.com' },
-    { icon: <FaTwitter />, href: 'https://twitter.com' },
-    { icon: <FaInstagram />, href: 'https://instagram.com' },
+    { icon: <FaGithub />, href: 'https://github.com', label: 'GitHub' },
+    { icon: <FaLinkedin />, href: 'https://linkedin.com', label: 'LinkedIn' },
+    { icon: <FaTwitter />, href: 'https://twitter.com', label: 'Twitter' },
+    { icon: <FaInstagram />, href: 'https://instagram.com', label: 'Instagram' },
   ];
 
   const handleNavClick = (href: string) => {
@@ -155,7 +148,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
           {/* Navigation */}
           <nav className="flex-1 mb-8">
             <ul className="space-y-3">
-              {navItems.map((item, index) => (
+              {NAVIGATION_ITEMS.map((item, index) => (
                 <motion.li
                   key={item.name}
                   initial={{ opacity: 0, x: -20 }}
@@ -211,6 +204,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
                 whileHover={{ scale: 1.2, y: -3 }}
                 whileTap={{ scale: 0.9 }}
                 className="text-gray-400 hover:text-white text-xl transition-all duration-300 p-3 rounded-lg hover:bg-white/10 backdrop-blur-sm"
+                aria-label={link.label}
               >
                 {link.icon}
               </motion.a>

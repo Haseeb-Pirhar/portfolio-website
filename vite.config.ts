@@ -3,4 +3,21 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
+  server: {
+    port: 3000,
+    open: true,
+    proxy: {
+      // Proxy API requests in dev to the external backend on :5000
+      // Frontend will call `/api/*` and Vite will forward to `http://localhost:5000`.
+      '/api': {
+        target: 'http://localhost:5000',
+        changeOrigin: true,
+        secure: false,
+      }
+    },
+  },
+  build: {
+    outDir: 'dist',
+    sourcemap: false,
+  },
 })

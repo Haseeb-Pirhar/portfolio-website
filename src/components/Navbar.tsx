@@ -2,18 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { HiMenu, HiX } from 'react-icons/hi';
 import { smoothScroll } from '../utils/smoothScroll';
+import { NAVIGATION_ITEMS } from '../utils/constants';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-
-  const navItems = [
-    { name: 'Home', href: 'home' },
-    { name: 'About', href: 'about' },
-    { name: 'Services', href: 'services' },
-    { name: 'Projects', href: 'projects' },
-    { name: 'Contact', href: 'contact' },
-  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,20 +35,21 @@ const Navbar: React.FC = () => {
         <div className="flex items-center justify-between h-16">
           <motion.div
             whileHover={{ scale: 1.05 }}
-            className="text-2xl font-bold text-primary"
+            className="text-2xl font-bold text-primary cursor-pointer"
+            onClick={() => smoothScroll('home')}
           >
             Portfolio
           </motion.div>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex space-x-8">
-            {navItems.map((item) => (
+            {NAVIGATION_ITEMS.map((item) => (
               <motion.button
                 key={item.name}
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => handleNavClick(item.href)}
-                className="text-gray-700 hover:text-primary transition-colors duration-300"
+                className="text-gray-700 hover:text-primary transition-colors duration-300 font-medium"
               >
                 {item.name}
               </motion.button>
@@ -67,6 +61,7 @@ const Navbar: React.FC = () => {
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="text-gray-700 hover:text-primary"
+              aria-label="Toggle menu"
             >
               {isOpen ? <HiX size={24} /> : <HiMenu size={24} />}
             </button>
@@ -79,16 +74,17 @@ const Navbar: React.FC = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="md:hidden bg-white/95 backdrop-blur-md rounded-lg mt-2 p-4"
+            className="md:hidden bg-white/95 backdrop-blur-md rounded-lg mt-2 p-4 space-y-2"
           >
-            {navItems.map((item) => (
-              <button
+            {NAVIGATION_ITEMS.map((item) => (
+              <motion.button
                 key={item.name}
+                whileHover={{ x: 5 }}
                 onClick={() => handleNavClick(item.href)}
-                className="block w-full text-left py-2 text-gray-700 hover:text-primary transition-colors duration-300"
+                className="block w-full text-left py-3 px-4 text-gray-700 hover:text-primary hover:bg-primary/5 rounded-lg transition-all duration-300 font-medium"
               >
                 {item.name}
-              </button>
+              </motion.button>
             ))}
           </motion.div>
         )}
