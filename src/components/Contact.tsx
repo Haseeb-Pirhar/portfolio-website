@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { HiMail, HiPhone, HiLocationMarker, HiPaperAirplane } from 'react-icons/hi';
-import { FaGithub, FaLinkedin, FaTwitter, FaInstagram } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaTwitter, FaInstagram, FaWhatsapp } from 'react-icons/fa';
 import { sendMessage, validateFormData } from '../api/contactApi';
 
 interface FormData {
@@ -112,24 +112,26 @@ const Contact: React.FC = () => {
       link: `mailto:${import.meta.env.VITE_CONTACT_EMAIL || 'haseebpirhar@gmail.com'}`
     },
     {
-      icon: <HiPhone className="text-3xl text-secondary" />,
+      icon: <FaWhatsapp className="text-3xl text-green-500" />,
       title: 'Phone',
       value: import.meta.env.VITE_PHONE || '+923367862574',
-      link: `tel:${import.meta.env.VITE_PHONE || '+923367862574'}`
+      link: `https://wa.me/${(import.meta.env.VITE_PHONE || '+923367862574')
+        .replace('+', '')}?text=Hello%20I%20want%20to%20contact%20you`
     },
     {
       icon: <HiLocationMarker className="text-3xl text-accent" />,
       title: 'Location',
-      value: import.meta.env.VITE_LOCATION || 'Lahore, Pakistan',
-      link: 'https://maps.google.com/?q=Lahore,Pakistan'
+      value: import.meta.env.VITE_LOCATION || 'Amana Mall, Lahore',
+      link: 'https://www.google.com/maps/place/Amanah+Mall'
     },
   ];
+
 
   const socialLinks = [
     { icon: <FaGithub />, href: 'https://github.com', label: 'GitHub' },
     { icon: <FaLinkedin />, href: 'https://linkedin.com', label: 'LinkedIn' },
-    { icon: <FaTwitter />, href: 'https://twitter.com', label: 'Twitter' },
-    { icon: <FaInstagram />, href: 'https://instagram.com', label: 'Instagram' },
+    { icon: <FaWhatsapp />, href: 'https://wa.me/', label: 'WhatsApp' },
+    { icon: <FaInstagram />, href: 'https://www.instagram.com/haseebpirhar2006/#', label: 'Instagram' },
   ];
 
   return (
